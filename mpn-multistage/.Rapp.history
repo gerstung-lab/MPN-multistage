@@ -1,0 +1,1273 @@
+ggplot(TGS,aes(x=as.factor(Mutations),y=Age))+geom_boxplot()+facet_grid(MF~Sex)
+TGS$Events2<-TGS$Mutations
+TGS$Events2<-TGS$Events
+TGS$Events2[TGS$Events2>3]<-"4+"
+mosaic(structable(quantileCut(Age,4)~Events2,data=subset(TGS,MF==1)),shade=TRUE,legend=TRUE)
+mosaic(structable(quantileCut(Age,4)~Events2,data=subset(TGS,MF==0)),shade=TRUE,legend=TRUE)
+TGS$Events2[TGS$Events2>2]<-"3+"
+mosaic(structable(quantileCut(Age,4)~Events2,data=subset(TGS,MF==0)),shade=TRUE,legend=TRUE)
+mosaic(structable(quantileCut(Age,4)~Events2,data=subset(TGS,MF==0&Sex=="F")),shade=TRUE,legend=TRUE)
+pchisq((cp_to_aml_fit$coef - cp_to_aml_fit$mu[cp_to_aml_fit$groups])^2/diag(cp_to_aml_fit$V)[1:66], 1,lower.tail=FALSE)
+write.table(data.frame(cp_data$id,colSums(multiRfx5LooCP[10*365/25,c(1:4),]),colSums(multiRfx5LooCP[10*365/25,c(2,4,5),]),colSums(multiRfx5LooCP[10*365/25,c(3,4),]),colSums(multiRfx5LooCP[10*365/25,c(2:5),]),colSums(multiRfx5LooCP[10*365/25,c(1:5),])),"CPDeath10.csv",sep=",")#
+> write.table(data.frame(mf_data$id,multiRfx5LooMF[10*365/25,6,],multiRfx5LooMF[10*365/25,7,]),"MFDeath10.csv",sep=",")
+write.table(data.frame(cp_data$id,colSums(multiRfx5LooCP[10*365/25,c(1:4),]),colSums(multiRfx5LooCP[10*365/25,c(2,4,5),]),colSums(multiRfx5LooCP[10*365/25,c(3,4),]),colSums(multiRfx5LooCP[10*365/25,c(2:5),]),colSums(multiRfx5LooCP[10*365/25,c(1:5),])),"CPDeath10.csv",sep=",")#
+write.table(data.frame(mf_data$id,multiRfx5LooMF[10*365/25,6,],multiRfx5LooMF[10*365/25,7,]),"MFDeath10.csv",sep=",")
+CP10<-read.table("CPDeath10.csv",sep=",",header=TRUE)
+summary(survdiff(Surv(Death/365.25,DeathC)~quantileCut(AnyDeath,10)),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~quantileCut(AnyDeath,10)),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~quantileCut(AnyDeath,10),data=C10),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~quantileCut(AnyDeath,10),data=CP10),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~quantileCut(1-AnyDeath,10),data=CP10),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~base::Cut(1-AnyDeath,10),data=CP10),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~base::cut(1-AnyDeath,10),data=CP10),times=c(0,5,10,15))
+summary(survfit(Surv(Death/365.25,DeathC)~base::cut(1-AnyDeath,10),data=CP10))
+summary(survfit(Surv(Death/365.25,DeathC)~base::cut(1-AnyDeath,10),data=CP10),times=c(25))
+summary(survfit(Surv(Death/365.25,DeathC)~base::cut(1-AnyDeath,10),data=CP10),times=c(0,25))
+summary(survfit(Surv(MFT/365.25,MFTC)~base::cut(1-MF,10),data=CP10),times=c(0,25))
+summary(survfit(Surv(MFT/365.25,MFTC)~base::cut(1-MF,10),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(MFT/365.25,MFTC)~quantileCut(1-MF,10),data=CP10),times=c(0,5,10,25))
+table(TGS$Cohort)
+summary(survfit(Surv(AMLT/365.25,AMLTC)~quantileCut(1-AML,10),data=CP10),times=c(0,5,10,25))
+dim(cytofirst)
+colnames(cytofirst)
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(GRO,3),data=cytofirst))
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(GRO,3),data=subset(cytofirst,Diag=="ET")))
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(GRO,4),data=subset(cytofirst,Diag=="ET")))
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(GRO,4),data=subset(cytofirst,Diag=="ET")),n.risk=TRUE)
+summary(survfit(Surv(Trans/365.25,TransC)~quantileCut(1-AML,10),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(AMLT/365.25,AMLTC)~quantileCut(1-AML,10),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(AMLT/365.25,AMLTC)~quantileCut(1-AML,3),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(AMLT/365.25,AMLTC)~quantileCut(1-AML,4),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(AMLT/365.25,AMLTC)~quantileCut(1-AML,20),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(AMLT/365.25,AMLTC)~base::cut(1-AML,10),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(1-AnyEvent,10),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,10),data=CP10),times=c(0,5,10,25))
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,10),data=CP10),times=c(0,5,10,15,20))
+library(devtools)#
+install_github("mg14/mg14")#
+install_github("mg14/CoxHD/CoxHD")
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,10),data=CP10))
+survplot(npsurv(Surv(Event/365.25,EventC)~quantileCut(1-Anyevent,10),data=CP10))
+survplot(npsurv(Surv(Event/365.25,EventC)~quantileCut(1-Anyevent,3),data=CP10))
+library(shiny)
+pchisq((cp_to_aml_fit$coef - cp_to_aml_fit$mu[cp_to_aml_fit$groups])^2/diag(cp_to_aml_fit$V)[1:66], 1,lower.tail=FALSE)
+pchisq((cp_to_aml_fit$coef - cp_to_aml_fit$mu[cp_to_aml_fit$groups])^2/diag(cp_to_aml_fit$hinV)[1:66], 1,lower.tail=FALSE)
+pchisq((cp_to_aml_fit$coef - cp_to_aml_fit$mu[cp_to_aml_fit$groups])^2/diag(cp_to_aml_fit$Hinv)[1:66], 1,lower.tail=FALSE)
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,bp=c(0,0.5,0.6,0.7,0.8,0.9,1)),data=CP10),times=c(0,5,10,15,20))
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.6,0.7,0.8,0.9,1)),data=CP10),times=c(0,5,10,15,20))
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.6,0.8,0.9,1)),data=CP10),times=c(0,5,10,15,20))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.6,0.8,0.9,1)),data=CP10))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),n.risk=TRUE,label.curves=list(keys=c("0 to 50%","50 to 80%","80 to 90%","90 to 100%")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),n.risk=TRUE,label.curves=list(keys=c("0 to 50% (n=183)","50 to 80% (n=349)","80 to 90% (n=377)","90 to 100% (n=696)")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),label.curves=list(keys=c("0 to 50% (n=183)","50 to 80% (n=349)","80 to 90% (n=377)","90 to 100% (n=696)")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),label.curves=list(keys=c("0 to 50% (n=183)","50 to 80% (n=349)","80 to 90% (n=377)","90 to 100% (n=696)")),xlim=(0,30))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),label.curves=list(keys=c("0 to 50% (n=183)","50 to 80% (n=349)","80 to 90% (n=377)","90 to 100% (n=696)")),xlim=c(0,30))
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1),CP10$Age)
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),quantileCut(CP10$Age,4))
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),base::cut(CP10$Age,breaks=c(0,40,80,200)))
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),base::cut(CP10$Age,breaks=c(0,40,60,80,200)))
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),base::cut(CP10$Age,breaks=c(0,30,40,50,60,70,80,200)))
+mosaic(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),base::cut(CP10$Age,breaks=c(0,30,40,50,60,70,80,200)))
+mosaic(structable(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),base::cut(CP10$Age,breaks=c(0,30,40,50,60,70,80,200))))
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),base::cut(CP10$Age,breaks=c(0,30,40,50,60,70,80,200)))
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),CP10$Age)
+table(base::cut(1-CP10$Anyevent,breaks=c(0,0.5,0.8,0.9,1)),CP10$Sex)
+MF10<-read.table("MFDeath10.csv",sep=",",header=TRUE)
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1)),data=MF10),times=c(0,5,10,15,20))
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),times=c(0,5,10,15,20))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),label.curves=list(keys=c("0 to 50% (n=183)","50 to 80% (n=349)","80 to 90% (n=377)","90 to 100% (n=696)")),xlim=c(0,30))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(1-Anyevent,breaks=c(0,0.5,0.8,0.9,1)),data=CP10),label.curves=list(keys=c("0 to 50% (n=183)","50 to 80% (n=349)","80 to 90% (n=377)","90 to 100% (n=696)")),xlim=c(0,30),xlab="Years from Diagnosis",ylab="Event Free Survival Probability")
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),times=c(0,5,10,15,20))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 80","80 to 100")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 60","60 to 80","80 to 100")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.4,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 80","80 to 100")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.4,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 80","80 to 100")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 60","60 to 80","80 to 100")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.4,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 40","40 to 80","80 to 100")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.4,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 40","40 to 80","80 to 100 (n=41)")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.4,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 40 (n=122)","40 to 80 (n=112)","80 to 100 (n=41)")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,5),data=MF10),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.3,0.6,1)),data=MF10),label.curves=list(keys=c("0 to 40 (n=122)","40 to 80 (n=112)","80 to 100 (n=41)")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.3,0.6,1)),data=MF10),label.curves=list(keys=c("0 to 30 (n=90)","30 to 60 (n=87)","60 to 100 (n=98)")),n.risk=TRUE)
+summary(survfit(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.3,0.6,1)),data=MF10),times=c(0,5,10,15,20))
+sum(TGS$CUX1)
+table(TGS$CUX1,TGS$Diag)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 60","60 to 80","80 to 100")))
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20","20 to 40","40 to 60","60 to 80","80 to 100")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20 (n=69)","20 to 40 (n=53)","40 to 60 (n=55)","60 to 80 (n=57)","80 to 100 (n=41)")),n.risk=TRUE)
+survplot(npsurv(Surv(Event/365.25,EventC)~base::cut(EFS,breaks=c(0,0.2,0.4,0.6,0.8,1)),data=MF10),label.curves=list(keys=c("0 to 20 (n=69)","20 to 40 (n=53)","40 to 60 (n=55)","60 to 80 (n=57)","80 to 100 (n=41)")))
+pchisq((cp_to_aml_fit$coef - cp_to_aml_fit$mu[cp_to_aml_fit$groups])^2/diag(cp_to_aml_fit$Hinv)[1:66], 1,lower.tail=FALSE)
+library(shiny)
+newdataplot(florCP[10,],1,0,0)
+library(rcpp)
+library(cpp)
+library(shiny)#
+library(xtable)#
+library(RColorBrewer)#
+library(CoxHD)#
+library(Rcpp)
+library(Rcpp)
+q()
+PT1P2<-read.table("Documents/PT1P2.csv",sep=",",header=TRUE)
+colnames(PT1P2)
+library(rms)
+colnames(PT1P2)
+library(lsr)
+survplot(npsurv(Surv(Death,DeathC)~quantileCut(IP.10,5),data=PT1P2))
+survplot(npsurv(Surv(Death,DeathC)~quantileCut(IP.10,3),data=PT1P2),conf="none")
+survplot(npsurv(Surv(Death,DeathC)~quantileCut(GRO,3),data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~quantileCut(GRO,3),data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~quantileCut(GRO,2),data=PT1P2),conf="none")
+survplot(npsurv(Surv(AMLT,AMLTC)~quantileCut(GRO,2),data=PT1P2),conf="none")
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(GRO,2),data=PT1P2),conf="none")
+histogram(PT1P2$GRO)
+survplot(npsurv(Surv(Trans,TransC)~GRO>9000,data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~GRO>9000,data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~GRO>8000,data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~GRO>1000,data=PT1P2),conf="none")
+survplot(npsurv(Surv(Trans,TransC)~base::cut(GRO,3),data=PT1P2),conf="none")
+survplot(npsurv(Surv(Trans,TransC)~base::cut(GRO,5),data=PT1P2),conf="none")
+survplot(npsurv(Surv(Trans,TransC)~base::cut(GRO,2),data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(GRO,2),data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(GRO,5),data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(EGF,5),data=PT1P2),conf="none")
+coxph(Surv(MFT,MFTC)~GRO,data=PT1P2)
+coxph(Surv(MFT,MFTC)~EGF,data=PT1P2)
+coxph(Surv(MFT,MFTC)~Eotaxin,data=PT1P2)
+coxph(Surv(MFT,MFTC)~IP.10,data=PT1P2)
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(IP.10,5),data=PT1P2),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(IFN.y,5),data=PT1P2),conf="none")
+coxph(Surv(MFT,MFTC)~IL.6,data=PT1P2)
+coxph(Surv(MFT,MFTC)~IL.8,data=PT1P2)
+coxph(Surv(MFT,MFTC)~IL.1Ra,data=PT1P2)
+coxph(Surv(Death,DeathC)~IP.10,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~IP.10,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~GRO,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~IL.8,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~IL.6,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~IL.1Ra,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~EGF,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~Eotaxin,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~TGF.a,data=PT1P2)
+coxph(Surv(PVT,PVTC)~TGF.a,data=PT1P2)
+coxph(Surv(AMLT,AMLTC)~TNF.a,data=PT1P2)
+coxph(Surv(MFT,MFTC)~TNF.a,data=PT1P2)
+coxph(Surv(Death,DeathC)~TNF.a,data=PT1P2)
+PT1P1<-read.table("Documents/PT1P1.csv",sep=",",header=TRUE)
+coxph(Surv(MFT,MFTC)~TNF.a,data=PT1P1)
+coxph(Surv(MFT,MFTC)~GRO,data=PT1P1)
+coxph(Surv(MFT,MFTC)~IP.10,data=PT1P1)
+PT1P3<-rbind(PT1P1,PT1P2)
+colnames(PT1P2)
+colnames(PT1P1)
+PT1P1<-read.table("Documents/PT1P1.csv",sep=",",header=TRUE)
+PT1P3<-rbind(PT1P1,PT1P2)
+head(PT1P3)
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+coxph(Surv(MFT,MFTC)~IP.10,data=PT1P12)
+survplot(Surv(MFT,MFTC)~quantileCut(IP.10,5),data=PT1P12)
+survplot(npsurv(Surv(MFT,MFTC)~quantileCut(IP.10,5),data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~quantileCut(IP.10,3),data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(IP.10,3),data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(GRO,3),data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~base::cut(GRO,2),data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~quantileCut(GRO,2),data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~quantileCut(GRO,3),data=PT1P12),conf="none")
+coxph(Surv(MFT,MFTC)~GRO,data=PT1P12)
+coxph(Surv(AMLT,AMLTC)~GRO,data=PT1P12)
+coxph(Surv(Trans,TransC)~GRO,data=PT1P12)
+survplot(npsurv(Surv(Trans,TransC)~base::cut(IP.10,3),data=PT1P12),conf="none")
+survplot(npsurv(Surv(Trans,TransC)~base::cut(IP.10,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(IP.10,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(MFT,MFTC)~GRO>4000,data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~GRO>3000,data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~GRO>2000,data=PT1P12),conf="none")
+survplot(npsurv(Surv(MFT,MFTC)~GRO>5000,data=PT1P12),conf="none")
+survplot(npsurv(Surv(Trans,TransC)~quantileCut(EGF,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(Death,DeathC)~quantileCut(EGF,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(Death,DeathC)~quantileCut(EGF,2),data=PT1P12),conf="none",n.risk=TRUE)
+coxph(Surv(Death,DeathC)~GRO+IP.10+TNF.a+IFN.y,data=PT1P12)
+survplot(npsurv(Surv(Death,DeathC)~quantileCut(GRO,2),data=PT1P12),conf="none",n.risk=TRUE)
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+coxph(Surv(EFS,EFSC)~GRO+IP.10+TNF.a+IFN.y+IL.6+IL.8+Eotaxin+EGF,data=PT1P12)
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO,4),data=PT1P12),conf="none",n.risk=TRUE)
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~GROR,data=PT1P12),conf="none",n.risk=TRUE)
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~GROR,data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~GRO<5000,data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~GRO<4800,data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO,3),data=PT1P12),conf="none",n.risk=TRUE)
+coxph(Surv(EFS,EFSC)~IP.10+TNF.a+IFN.y+IL.6+IL.8+Eotaxin+EGF,data=PT1P12)
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(IP.10,3),data=PT1P12),conf="none",n.risk=TRUE)
+survplot(npsurv(Surv(EFS,EFSC)~base::cut(IP.10,3),data=PT1P12),conf="none",n.risk=TRUE)
+coxph(Surv(EFS,EFSC)~IP.10+TNF.a+IFN.y+IL.6+IL.8+Eotaxin+EGF+IL.1Ra,data=PT1P12)
+coxph(Surv(EFS,EFSC)~IP.10+TNF.a+IFN.y+IL.6+IL.8+Eotaxin+EGF+IL.1Ra+GRO,data=PT1P12)
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+library(ggplot2)
+ggplot(PT1P12,aes(x=Group,y=GRO))+geom_jitter()
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+ggplot(PT1P12,aes(x=Group,y=GRO))+geom_jitter()
+ggplot(PT1P12,aes(x=Group,y=GRO))+geom_boxplot()
+ggplot(PT1P12,aes(x=Group,y=IP.10))+geom_boxplot()
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+ggplot(PT1P12,aes(x=Group,y=IP.10))+geom_boxplot()
+ggplot(PT1P12,aes(x=Group,y=log(IP.10+1)))+geom_boxplot()
+ggplot(PT1P12,aes(x=Group,y=log(GRO+1)))+geom_boxplot()
+ggplot(PT1P12,aes(x=Group,y=log(EGF+1)))+geom_boxplot()
+ggplot(PT1P12,aes(x=Group,y=log(Eotaxin+1)))+geom_boxplot()
+ggplot(PT1P12,aes(x=Group,y=log(Eotaxin+1)))+geom_boxplot()+facet_wrap(~Plate)
+ggplot(PT1P12,aes(x=Group,y=log(TNF.a+1)))+geom_boxplot()
+PT1P12<-read.table("Documents/PT1P12.csv",sep=',',header=TRUE)
+coxph(Surv(EFS,EFSC)~IP.10+TNF.a+IFN.y+IL.6+IL.8+Eotaxin+EGF+IL.1Ra+GRO2,data=PT1P12)
+survplot(npsurv(Surv(EFS,EFSC)~cut(GRO2,3),data=PT1P12))
+survplot(npsurv(Surv(EFS,EFSC)~base::cut(GRO2,3),data=PT1P12))
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO2,3),data=PT1P12))
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO2,4),data=PT1P12))
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(GRO2,2),data=PT1P12))
+survplot(npsurv(Surv(EFS,EFSC)~Plate,data=PT1P12))
+coxph(Surv(EFS,EFSC)~Plate+IP.10+TNF.a+IFN.y+IL.6+IL.8+Eotaxin+EGF+IL.1Ra+GRO2,data=PT1P12)
+survplot(npsurv(Surv(EFS,EFSC)~IP.10,data=PT1P1))
+survplot(npsurv(Surv(EFS,EFSC)~base::cut(IP.10,3),data=subset(PT1P12,Plate==1)))
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(IP.10,3),data=subset(PT1P12,Plate==1)))
+survplot(npsurv(Surv(EFS,EFSC)~quantileCut(IP.10,3),data=subset(PT1P12,Plate==2)))
+q()
+TGSall<-read.table(data/TGS_141117v3.csv,sep=",",header=TRUE)
+getwd()
+TGSall<-read.table("data/TGS_141117v3.csv",sep=",",header=TRUE)
+aggregate(TGSall$Aneu,by=list(TGSall$HDP),FUN=mean)
+library(ggplot2)
+ggplot(TGSall,aes(x=HDP,y=Aneu))+geom_jitter()
+ggplot(TGSall,aes(x=HDP,y=Aneu))+geom_jitter(height=0.01)
+q()
+rm(list=ls())
+library(CoxHD)#
+library(survival)#
+library(DT)#
+library(htmlwidgets)#
+library(IRdisplay)#
+library(repr)#
+library(msSurv)#
+library(Rcpp)#
+library(HilbertVis)#
+library(rms)#
+library(data.table)#
+library(hdp)#
+library(ggplot2)#
+library(lsr)#
+library(BradleyTerry2)#
+library(qvcalc)#
+library(tidyr)
+btz<-read.table("btz.csv",sep=",",header=TRUE)#
+btm<- BTm(cbind(win1, win2), Var1, Var2, ~ Var, id = "Var", data=btz,br=TRUE,refcat="V617F")#
+# refcat is arbitrary#
+qv<-qvcalc(BTabilities(btm))#
+sink("TGS_output.txt",append=TRUE)#
+cat("Bradley Terry estimates for abilities, with quasi variances \n"#
+qv#
+sink()
+btz<-read.table("btz.csv",sep=",",header=TRUE)#
+btm<- BTm(cbind(win1, win2), Var1, Var2, ~ Var, id = "Var", data=btz,br=TRUE,refcat="V617F")#
+# refcat is arbitrary#
+qv<-qvcalc(BTabilities(btm))#
+sink("TGS_output.txt",append=TRUE)#
+cat("Bradley Terry estimates for abilities, with quasi variances \n")#
+qv#
+sink()#
+#
+rawData <- read.table("TGS_input_all_Z.csv", header=T, sep=",", fill=T, na.strings=c("NA","na"))#
+#
+#Remove 4 CML patients#
+#
+rawData <- rawData[rawData$UPN!="PT1841",]#
+rawData <- rawData[rawData$UPN!="PT1046",]#
+rawData <- rawData[rawData$UPN!="PT1288",]#
+rawData <- rawData[rawData$UPN!="PT1759",]#
+rawData$Death[rawData$UPN=="4295FL"] <- 424#
+TGSZ<-rawData#
+TGSZ$DeathC[which(TGSZ$AMLTC==1)]<-1#
+TGSZcut<-subset(TGSZ,Death>=0)#
+#
+###Descriptive Stats#
+sink("TGS_output.txt",append=TRUE)#
+cat("Descriptive stats by diagnosis \n")#
+cat("Hb, WCC, Pl, Age by Diag \n")#
+aggregate(TGSZ[,c("Hb","WCC","Pl","Age")],by=list(TGSZ$Diag),FUN=median,na.rm=TRUE)#
+cat("Sex and Cohort by Diag \n")#
+table(TGSZ$Sex,TGSZ$Diag)#
+table(TGSZ$Cohort,TGSZ$Diag)#
+cat("Counts for each mutation \n")#
+aggregate(TGSZ[,c("JAK2", "CALR", "MPL", "JAK2e12", "TET2", "ASXL1", "DNMT3A", "PPM1D", "EZH2", "NF1", "NFE2", "SF3B1", "SRSF2", "TP53", "U2AF1", "CBL", "MLL3", "ZRSR2", "GNAS", "KRAS", "SH2B3", "IDH2", "PTPN11", "KIT", "RB1", "BCOR", "NRAS", "CUX1", "STAG2", "IDH1", "RUNX1", "PHF6", "GATA2", "GNB1","C1p", "C1q", "C4", "C5", "C7", "C8", "C9U", "C9g", "C11", "C12", "C13", "C14", "C17", "C18", "C19", "C20")],by=list(TGSZ$Diag),FUN=sum,na.rm=TRUE)#
+cat("Linear regression for Hb \n")#
+summary(glm(Hb~JAK2+CALR+MPL+JAK2e12+TET2+ASXL1+DNMT3A+PPM1D+EZH2+NF1+NFE2+SF3B1+SRSF2+TP53+U2AF1+CBL+MLL3+ZRSR2+GNAS+KRAS+SH2B3+IDH2+PTPN11+KIT+RB1+BCOR+NRAS+CUX1+STAG2+IDH1+RUNX1+PHF6+GATA2+GNB1+C1p+C1q+C4+C5+C7+C8+C9U+C9g+C11+C12+C13+C14+C17+C18+C19+C20+Age+Sex+Diag,data=TGSZ))#
+cat("Linear regression for WCC \n")#
+summary(glm(WCC~JAK2+CALR+MPL+JAK2e12+TET2+ASXL1+DNMT3A+PPM1D+EZH2+NF1+NFE2+SF3B1+SRSF2+TP53+U2AF1+CBL+MLL3+ZRSR2+GNAS+KRAS+SH2B3+IDH2+PTPN11+KIT+RB1+BCOR+NRAS+CUX1+STAG2+IDH1+RUNX1+PHF6+GATA2+GNB1+C1p+C1q+C4+C5+C7+C8+C9U+C9g+C11+C12+C13+C14+C17+C18+C19+C20+Age+Sex+Diag,data=TGSZ))#
+cat("Linear regression for Platelet count \n")#
+summary(glm(Pl~JAK2+CALR+MPL+JAK2e12+TET2+ASXL1+DNMT3A+PPM1D+EZH2+NF1+NFE2+SF3B1+SRSF2+TP53+U2AF1+CBL+MLL3+ZRSR2+GNAS+KRAS+SH2B3+IDH2+PTPN11+KIT+RB1+BCOR+NRAS+CUX1+STAG2+IDH1+RUNX1+PHF6+GATA2+GNB1+C1p+C1q+C4+C5+C7+C8+C9U+C9g+C11+C12+C13+C14+C17+C18+C19+C20+Age+Sex+Diag,data=TGSZ))#
+sink()#
+#
+##OR#
+#
+a<-TGSZ[,c("ET","MF","PV","JAK2", "CALR", "MPL", "JAK2e12", "TET2", "ASXL1", "DNMT3A", "PPM1D", "EZH2", "NF1", "NFE2", "SF3B1", "SRSF2", "TP53", "U2AF1", "CBL", "MLL3", "ZRSR2", "GNAS", "KRAS", "SH2B3", "IDH2", "PTPN11", "KIT", "RB1", "BCOR", "NRAS", "CUX1", "STAG2", "IDH1", "RUNX1", "PHF6", "GATA2", "GNB1","C1p", "C1q", "C4", "C5", "C7", "C8", "C9U", "C9g", "C11", "C12", "C13", "C14", "C17", "C18", "C19", "C20")]#
+a<-as.matrix(a)#
+ a<-t(a)%*%a#
+ counts<-apply(a,1,max)#
+ b<-counts-a#
+ c<-t(b)#
+d<-nrow(TGSZ)-a-b-c#
+ OR<-(a*d)/(b*c)#
+RR<-(a/(a+b))/(c/(c+d))#
+SE<-sqrt(1/a+1/b+1/c+1/d)#
+UL<-2^(log(OR,2)+1.96*SE)#
+LL<- 2^(log(OR,2)-1.96*SE)#
+SER<-sqrt(b/(a*(a+b))+d/(c*(c+d)))#
+ULR<-2^(log(RR,2)+1.96*SER)#
+LLR<- 2^(log(RR,22)-1.96*SER)#
+new<-cbind(as.vector(a),as.vector(b),as.vector(c),as.vector(d))#
+chis<-function(dataset,a,b,c,d){#
+A<-0#
+g<-1#
+while(g<=nrow(dataset)){#
+if(is.na(dataset[g,c])){#
+A[g]<-NA#
+g<-g+1#
+}else{#
+A[g]<-fisher.test(matrix(c(dataset[g,a],dataset[g,b],dataset[g,c],dataset[g,d]), nrow=2, ncol=2))$p.value#
+g<-g+1}}#
+return(A)}#
+chi<-chis(new,1,2,3,4)#
+size<-length(a)#
+ chi<-matrix(chi,ncol=nrow(a),nrow=nrow(a))#
+ ps<-chi#
+ ps[lower.tri(ps,diag=TRUE)]<-NA#
+ ps2<-p.adjust(ps,method="BH")#
+ps3<-ps2#
+sigs<-gather(data.frame(OR),gene,OR,factor_key=TRUE)#
+sigs$gene2<-colnames(OR)#
+sigs$UL<-matrix(UL,ncol=1)#
+sigs$LL<-matrix(LL,ncol=1)#
+sigs$pvalue<-ps3#
+sigs<-sigs[which(ps3<0.05),]#
+sink("TGS_output.txt",append=TRUE)#
+cat("Significant associations /n")#
+sigs#
+sink()#
+ ps2<-matrix(ps2,ncol=nrow(a),nrow=nrow(a))#
+ write.table(ps2,file="Zps2.csv",sep=",")#
+ write.table(OR,file="ZOR.csv",sep=",")#
+write.table(a,file="Za.csv",sep=",")#
+write.table(chi,file="Zchi.csv",sep=",")#
+write.table(UL,file="ZUL.csv",sep=",")#
+write.table(LL,file="ZLL.csv",sep=",")#
+#
+GWAS<-read.table("GWAS_Z.csv",sep=",",header=TRUE)#
+a<-GWAS[,c(7:83,91:105,108:143)]#
+a<-as.matrix(a)#
+a<-t(a)%*%a#
+ counts<-apply(a,1,max)#
+ b<-counts-a#
+ c<-t(b)#
+d<-nrow(GWAS)-a-b-c#
+ OR<-(a*d)/(b*c)#
+RR<-(a/(a+b))/(c/(c+d))#
+SE<-sqrt(1/a+1/b+1/c+1/d)#
+UL<-2^(log(OR,2)+1.96*SE)#
+LL<- 2^(log(OR,2)-1.96*SE)#
+SER<-sqrt(b/(a*(a+b))+d/(c*(c+d)))#
+ULR<-2^(log(RR,2)+1.96*SER)#
+LLR<- 2^(log(RR,22)-1.96*SER)#
+new<-cbind(as.vector(a),as.vector(b),as.vector(c),as.vector(d))#
+chis<-function(dataset,a,b,c,d){#
+A<-0#
+g<-1#
+while(g<=nrow(dataset)){#
+if(is.na(dataset[g,c])){#
+A[g]<-NA#
+g<-g+1#
+}else{#
+A[g]<-fisher.test(matrix(c(dataset[g,a],dataset[g,b],dataset[g,c],dataset[g,d]), nrow=2, ncol=2))$p.value#
+g<-g+1}}#
+return(A)}#
+chi<-chis(new,1,2,3,4)#
+size<-length(a)#
+ chi<-matrix(chi,ncol=nrow(a),nrow=nrow(a))#
+ ps<-chi#
+ ps[lower.tri(ps,diag=TRUE)]<-NA#
+ ps2<-p.adjust(ps,method="BH")#
+ps3<-ps2#
+sigs<-gather(data.frame(OR),gene,OR,factor_key=TRUE)#
+sigs$gene2<-colnames(OR)#
+sigs$UL<-matrix(UL,ncol=1)#
+sigs$LL<-matrix(LL,ncol=1)#
+sigs$pvalue<-ps3#
+sigs<-sigs[which(ps3<0.05),]#
+sink("TGS_output.txt",append=TRUE)#
+cat("Significant associations /n")#
+sigs#
+sink()#
+ ps2<-matrix(ps2,ncol=nrow(a),nrow=nrow(a))#
+ write.table(ps2,file="Gps2.csv",sep=",")#
+ write.table(OR,file="GOR.csv",sep=",")#
+write.table(a,file="Ga.csv",sep=",")#
+write.table(chi,file="Gchi.csv",sep=",")#
+write.table(UL,file="GUL.csv",sep=",")#
+write.table(LL,file="GLL.csv",sep=",")#
+#
+JEP<-subset(GWAS,JAK2==1&(ET==1|PV==1))#
+a<-JEP[,c(7:83,91:105,108:143)]#
+a<-as.matrix(a)#
+a<-t(a)%*%a#
+ counts<-apply(a,1,max)#
+ b<-counts-a#
+ c<-t(b)#
+d<-nrow(JEP)-a-b-c#
+ OR<-(a*d)/(b*c)#
+RR<-(a/(a+b))/(c/(c+d))#
+SE<-sqrt(1/a+1/b+1/c+1/d)#
+UL<-2^(log(OR,2)+1.96*SE)#
+LL<- 2^(log(OR,2)-1.96*SE)#
+SER<-sqrt(b/(a*(a+b))+d/(c*(c+d)))#
+ULR<-2^(log(RR,2)+1.96*SER)#
+LLR<- 2^(log(RR,22)-1.96*SER)#
+new<-cbind(as.vector(a),as.vector(b),as.vector(c),as.vector(d))#
+chis<-function(dataset,a,b,c,d){#
+A<-0#
+g<-1#
+while(g<=nrow(dataset)){#
+if(is.na(dataset[g,c])){#
+A[g]<-NA#
+g<-g+1#
+}else{#
+A[g]<-fisher.test(matrix(c(dataset[g,a],dataset[g,b],dataset[g,c],dataset[g,d]), nrow=2, ncol=2))$p.value#
+g<-g+1}}#
+return(A)}#
+chi<-chis(new,1,2,3,4)#
+size<-length(a)#
+ chi<-matrix(chi,ncol=nrow(a),nrow=nrow(a))#
+ ps<-chi#
+ ps[lower.tri(ps,diag=TRUE)]<-NA#
+ ps2<-p.adjust(ps,method="BH")#
+ps3<-ps2#
+sigs<-gather(data.frame(OR),gene,OR,factor_key=TRUE)#
+sigs$gene2<-colnames(OR)#
+sigs$UL<-matrix(UL,ncol=1)#
+sigs$LL<-matrix(LL,ncol=1)#
+sigs$pvalue<-ps3#
+sigs<-sigs[which(ps3<0.05),]#
+sink("TGS_output.txt",append=TRUE)#
+cat("Significant associations \n")#
+sigs#
+cat("Logistic regression results \n")#
+summary(glm(PV~NFE2+C9+V617FHigh+rs409801+rs2867932+rs2236496+rs12340895+rs11042125+rs10974900+rs10758658+Age+Sex,family=binomial(link='logit'),data=JEP))#
+sink()#
+#
+ ps2<-matrix(ps2,ncol=nrow(a),nrow=nrow(a))#
+ write.table(ps2,file="Jps2.csv",sep=",")#
+ write.table(OR,file="JOR.csv",sep=",")#
+write.table(a,file="Ja.csv",sep=",")#
+write.table(chi,file="Jchi.csv",sep=",")#
+write.table(UL,file="JUL.csv",sep=",")#
+write.table(LL,file="JLL.csv",sep=",")#
+# ggplot(subset(FP,gene2=="PV"),aes(x=OR,y=Order,label=pval))+geom_point()+scale_x_log10()+scale_y_discrete(limits=c("rs2236496 (C)","rs409801 (C)", "rs11042125 (T)","rs10758658 (A)","Male sex","Age >60","rs12340895 (G)","NFE2","JAK2 clone >50%","9p"))+geom_errorbarh(aes(xmax=UL,xmin=LL,height=0.1))+geom_text(nudge_y=-0.25,nudge_x=0.2,cex=2)+theme_bw()+xlab("Odds ratio for Polycythemia vera")+ylab("")+coord_fixed(ratio = 0.1)#
+#ggplot(subset(FP,gene2=="MF"),aes(x=OR,y=Order,label=pval))+geom_point()+scale_x_log10()+scale_y_discrete(limits=c("rs13219787 (A)","rs11104870 (T)","Male sex","Age >60","9p","JAK2 clone >50%","1p","CBL","ASXL1","EZH2","SRSF2","U2AF1","7q","ZRSR2","NRAS"))+geom_errorbarh(aes(xmax=UL,xmin=LL,height=0.1))+geom_text(nudge_y=-0.25,nudge_x=0.2,cex=2)+theme_bw()+xlab("Odds ratio for Myelofibrosis")+ylab("")+coord_fixed(ratio = 0.1)#
+## Dirichlet stuff#
+genotypes<-TGSZ[,c("JAK2", "CALR", "MPL", "JAK2e12", "TET2", "ASXL1", "DNMT3A", "PPM1D", "EZH2", "NF1", "NFE2", "SF3B1", "SRSF2", "TP53", "U2AF1", "CBL", "MLL3", "ZRSR2", "GNAS", "KRAS", "SH2B3", "IDH2", "PTPN11", "KIT", "RB1", "BCOR", "NRAS", "CUX1", "STAG2", "IDH1", "RUNX1", "PHF6", "GATA2", "GNB1","C1p", "C1q", "C4", "C5", "C7", "C8", "C9U", "C9g", "C11", "C12", "C13", "C14", "C17", "C18", "C19", "C20")]#
+n <- ncol(genotypes)#
+shape <- 5#
+invscale <- 5#
+hdp <- hdp_init(ppindex=0, #index of the parent DP for initial DP#
+        cpindex=1, #index of alphaa and alphab for initial DP#
+        hh=rep(1/n,n), #params for base distn (uniform Dirichlet)#
+        alphaa=shape,#
+        alphab=invscale)#
+hdp <- hdp_adddp(hdp,#
+        numdp=nrow(genotypes), # one DP for every sample in that cancer type#
+        ppindex=1, # parent DP for group i is the i-th+1 overall DP because of the grandparent at position 1#
+        cpindex=1) # index of alphaa and alphab for each DP#
+#
+# Assign the data from each patient to a child DP#
+hdp <- hdp_setdata(hdp = hdp, dpindex=1:nrow(genotypes)+1, data=genotypes)#
+#
+# Activate the DPs with specified number of classes (signatures)#
+hdp <- dp_activate(hdp, 1:(nrow(genotypes)+1), initcc=5, seed=42)#
+#
+burnin <- 500#
+postsamples <- 1000#
+spacebw <- 20#
+cpsamples <- 10#
+set.seed(42)#
+hdpChain <- hdp_posterior(hdp, #activated hdp structure#
+        burnin=burnin,#
+        n=postsamples,#
+        space=spacebw,#
+        cpiter=cpsamples)#
+#
+hdpMerged <- hdp_extract_components(hdpChain, cos.merge=0.95)#
+#
+posteriorSamples <- aperm(array(unlist(hdpMerged@comp_categ_counts), dim=c(dim(hdpMerged@comp_categ_counts[[1]]), length(hdpMerged@comp_categ_counts))), c(2,3,1)) #
+rownames(posteriorSamples) <- colnames(genotypes)#
+colnames(posteriorSamples) <- paste("Class", 1:ncol(posteriorSamples) -1)#
+posteriorMeans <- rowMeans(posteriorSamples, dim=2)#
+posteriorQuantiles <- apply(posteriorSamples, 1:2, quantile, c(0.025,.5,0.975), type=1)#
+posteriorMode <- apply(posteriorSamples, 1:2, function(x) {t <- table(x); as.numeric(names(t)[which.max(t)])})#
+sink("TGS_output.txt",append=TRUE)#
+cat("Genes by HDP group \n")#
+data.table(data.frame(Lesion=colnames(posteriorQuantiles), posteriorQuantiles[2,,]))#
+sink()#
+#
+## Need to include application of HDP rules here#
+#
+## KMs for HDP groups#
+pdf("HDP_KM.pdf")#
+par(mfrow=c(7,2), mar=c(2,2,2,1))#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="TP53")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="TP53")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="TP53")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="TP53")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="TP53")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="Adv")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="Adv")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="Adv")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="Adv")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="Adv")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="CALR")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="CALR")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="CALR")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="CALR")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="CALR")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="MPL")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="MPL")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="MPL")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="MPL")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="MPL")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="Jhom")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="Jhom")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="Jhom")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="Jhom")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="Jhom")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="Jhet")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="Jhet")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="Jhet")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="Jhet")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="Jhet")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==1&HDP=="Nil")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==1&HDP=="Nil")),conf.int=FALSE,xlim=c(0,25),lty=2)#
+plot(survfit(Surv(Death/365.25,DeathC)~1,data=subset(TGSZ,MF==0&HDP=="Nil")),conf.int=FALSE,xlim=c(0,25));lines(survfit(Surv(AMLT/365.25,AMLTC)~1,data=subset(TGSZ,MF==0&HDP=="Nil")),conf.int=FALSE,xlim=c(0,25),lty=2);lines(survfit(Surv(MFT/365.25,MFTC)~1,data=subset(TGSZ,MF==0&HDP=="Nil")),conf.int=FALSE,xlim=c(0,25),lty=3)#
+dev.off()#
+#
+##p-values, median survival and 10-yr outcomes for HDP groups#
+#
+TGSZ$HDP<-relevel(TGSZ$HDP,ref="Jhet")#
+#
+sink("TGS_output.txt",append=TRUE)#
+coxph(Surv(Death,DeathC)~HDP,subset(TGSZ,MF==0))#
+coxph(Surv(Death,DeathC)~HDP,subset(TGSZ,MF==1))#
+coxph(Surv(MFT,MFTC)~HDP,subset(TGSZ,MF==0))#
+coxph(Surv(EFS,EFSC)~HDP,subset(TGSZ,MF==0))#
+coxph(Surv(AMLT,AMLTC)~HDP,subset(TGSZ,MF==0))#
+coxph(Surv(AMLT,AMLTC)~HDP,subset(TGSZ,MF==1))#
+#
+survfit(Surv(Death,DeathC)~HDP,subset(TGSZ,MF==0))#
+survfit(Surv(Death,DeathC)~HDP,subset(TGSZ,MF==1))#
+survfit(Surv(MFT,MFTC)~HDP,subset(TGSZ,MF==0))#
+survfit(Surv(EFS,EFSC)~HDP,subset(TGSZ,MF==0))#
+survfit(Surv(AMLT,AMLTC)~HDP,subset(TGSZ,MF==0))#
+survfit(Surv(AMLT,AMLTC)~HDP,subset(TGSZ,MF==1))#
+#
+data.frame(levels(TGSZ$HDP),summary(survfit(Surv(Death,DeathC)~HDP,subset(TGSZ,MF==0)),times=c(10*365.25))$surv)#
+data.frame(levels(TGSZ$HDP),summary(survfit(Surv(Death,DeathC)~HDP,subset(TGSZ,MF==1)),times=c(10*365.25))$surv)#
+data.frame(levels(TGSZ$HDP),summary(survfit(Surv(MFT,MFTC)~HDP,subset(TGSZ,MF==0)),times=c(10*365.25))$surv)#
+data.frame(levels(TGSZ$HDP),summary(survfit(Surv(EFS,EFSC)~HDP,subset(TGSZ,MF==0)),times=c(10*365.25))$surv)#
+data.frame(levels(TGSZ$HDP),summary(survfit(Surv(AMLT,AMLTC)~HDP,subset(TGSZ,MF==0)),times=c(10*365.25))$surv)#
+data.frame(levels(TGSZ$HDP),summary(survfit(Surv(AMLT,AMLTC)~HDP,subset(TGSZ,MF==1)),times=c(10*365.25))$surv)#
+sink()#
+## Data prep for individual models#
+#
+rawData$MFT[rawData$MFTC==0 | is.na(rawData$MFTC)] <- NA#
+rawData$AMLT[rawData$AMLTC==0 | is.na(rawData$AMLTC)] <- NA#
+rawData$CPT <- rawData$Lcen#
+# This takes into account patients that start in MF#
+rawData$MFT[rawData$MF==1] <- rawData$Lcen[rawData$MF==1] #
+rawData$CPT[rawData$MF==1] <- NA#
+#
+rawData$Diagnosis <- rep(0, nrow(rawData))#
+# Change gender to an integer#
+rownames(rawData) <- rawData$UPN#
+Cohorts <- MakeInteger(rawData$Cohort)#
+rawData[colnames(Cohorts)] <- Cohorts#
+rawData$Cohort <- NULL#
+rawData$Sex <- as.integer(rawData$Sex)#
+splitPatients <- function(progsTimes, Z){#
+        Zdup <- lapply(1:nrow(progsTimes), function(i){#
+                id <- progsTimes[i,]$id#
+                patient_data <- unlist(Z[rownames(Z) == id,])#
+                return(patient_data)#
+        })#
+        return(as.data.frame(do.call("rbind",Zdup)))#
+}#
+#
+progressionTimes <- function(data, startName, endName, transNames, outcomeName){#
+        progress_data <- NULL#
+        for (i in c(1:nrow(data))){#
+                t <- c(as.numeric(data[i,c(transNames,endName)]) - as.numeric(data[i,startName]))#
+                order_idx <- order(t, na.last=NA)#
+                ordered_t <- c(0,t[order_idx])#
+                start_t <- ordered_t[-length(ordered_t)]#
+                end_t <- ordered_t[-1]#
+                trans_group <- matrix(0, length(order_idx), length(c(startName, transNames)))#
+                for (r in 1:length(order_idx))#
+                        trans_group[r, c(1,order_idx+1)[r]] <- 1#
+                colnames(trans_group) <- c(startName, transNames)#
+                outcome <- rep(0, length(start_t))#
+                outcome[length(outcome)] <- data[i,outcomeName]#
+                s <- data.frame(id = rownames(data)[i], trans_group, start.time = start_t, end.time = end_t, outcome=outcome)#
+                progress_data <- rbind(progress_data, s)#
+        }#
+        return(progress_data)#
+}#
+dataGroups <- list(#
+    Genetics = c("JAK2", "CALR1","CALR2", "MPL", "JAK2e12", "TET2", "ASXL1", "DNMT3A", "PPM1D", "EZH2", "NF1", "NFE2", "SF3B1", "SRSF2", "TP53", "U2AF1", "CBL", "MLL3", "ZRSR2", "GNAS", "KRAS", "SH2B3", "IDH2", "PTPN11", "KIT", "RB1", "BCOR", "NRAS", "CUX1", "STAG2", "IDH1", "RUNX1", "PHF6", "GATA2", "GNB1"),#
+    Cytogenetics = c("C1p", "C1q", "C4", "C5", "C7", "C8", "C9U", "C9g", "C11", "C14", "C17", "C18", "C19", "C20"),#
+    Demographics = c("Age", "Sex"),#
+    Clinical = c("Splen", "Hb", "WCC", "Pl", "PV", "ET","MF","PriorThrom"),#
+Nuisance = c(colnames(Cohorts))#
+)#
+#
+mustHaveCols <- c("Death","DeathC")#
+for (col in mustHaveCols)#
+    rawData <- rawData[!is.na(rawData[[col]]),]#
+#
+aml_corrections <- !is.na(rawData$AMLTC) & rawData$AMLTC & (rawData$Death - rawData$AMLT) < 1 & !is.na(rawData$AMLT)#
+rawData$Death[aml_corrections] <- rawData$AMLT[aml_corrections] + 1#
+mf_corrections <- !is.na(rawData$MFTC) & rawData$MFTC & (rawData$Death - rawData$MFT) < 1 & !is.na(rawData$MFT)#
+rawData$Death[mf_corrections] <- rawData$MFT[mf_corrections] + 1#
+#
+time_mf_cp <- rawData$MFT[rawData$MF == 0]/365#
+time_aml_cp <- rawData$AMLT[rawData$MF == 0]/365#
+time_death_cp <- pmin(rawData$Death[rawData$MF == 0]/365, time_aml_cp, na.rm = T)#
+outcome_from_cp <- as.integer(rawData$DeathC[rawData$MF == 0] | rawData$AMLTC[rawData$MF == 0])#
+time_mf_mf <- rawData$MFT[rawData$MF != 0]/365#
+time_aml_mf <- rawData$AMLT[rawData$MF != 0]/365#
+time_death_mf <- pmin(rawData$Death[rawData$MF != 0]/365, time_aml_mf, na.rm = T)#
+outcome_from_mf <- as.integer(rawData$DeathC[rawData$MF != 0] | rawData$AMLTC[rawData$MF != 0])#
+#
+timeStage <- progressionTimes(rawData, "Diagnosis", "Death", c("CPT", "MFT", "AMLT"), "DeathC")#
+rawZ <- rawData[unlist(dataGroups)]#
+ZStdize <- StandardizeMagnitude(rawZ)#
+colnames(ZStdize) <- colnames(rawZ)#
+poorMansImpute <- function(x) {x[is.na(x)] <- mean(x, na.rm=TRUE); return(x)}#
+ZImpute <- as.data.frame(sapply(ZStdize, poorMansImpute))#
+rownames(ZImpute) <- rownames(ZStdize)#
+Zdup <- splitPatients(timeStage, ZImpute)#
+all_data <-list(id=timeStage$id,#
+        start.time=timeStage$start.time/365,#
+        end.time=timeStage$end.time/365,#
+        outcome=timeStage$outcome,#
+        progression=timeStage[c("Diagnosis", c("CPT", "MFT", "AMLT"))],#
+        Z=Zdup)#
+which.mu <- c()#
+new_split_patient <- which(all_data$progression$Diagnosis == 1)#
+split_patient_diagnosis <- c()#
+cp_or_mf <- "CP"#
+for (i in (1:nrow(all_data$progression))) {#
+    if (i %in% new_split_patient) {#
+        if (as.integer(all_data$progression[i+1,]$CPT) == 1){#
+            cp_or_mf <- "CP"#
+        }#
+        if (as.integer(all_data$progression[i+1,]$MFT) == 1){#
+            cp_or_mf <- "MF"#
+        }#
+    }#
+    split_patient_diagnosis <- c(split_patient_diagnosis, cp_or_mf)#
+}#
+wpresampling <- which(all_data$progression$Diagnosis == 1)#
+all_data$sampling.time <- all_data$start.time[wpresampling+1] - all_data$start.time[wpresampling]#
+# Remove following line if you want the start time to go from sampling#
+all_data$start.time[wpresampling+1] <- all_data$start.time[wpresampling]#
+####
+all_data$Z <- all_data$Z[-wpresampling,]#
+all_data$id <- all_data$id[-wpresampling]#
+all_data$progression <- all_data$progression[-wpresampling,]#
+all_data$start.time <- all_data$start.time[-wpresampling]#
+all_data$end.time <- all_data$end.time[-wpresampling]#
+all_data$outcome <- all_data$outcome[-wpresampling]#
+all_data$split_patient_diagnosis <- all_data$split_patient_diagnosis[-wpresampling]#
+split_patient_diagnosis <- split_patient_diagnosis[-wpresampling]#
+mf_data <-list(id=all_data$id[split_patient_diagnosis=="MF"],#
+    start.time=all_data$start.time[split_patient_diagnosis=="MF"],#
+    end.time=all_data$end.time[split_patient_diagnosis=="MF"],#
+    outcome=all_data$outcome[split_patient_diagnosis=="MF"],#
+    progression=all_data$progression[split_patient_diagnosis=="MF",],#
+    Z=all_data$Z[split_patient_diagnosis=="MF",])#
+cp_data <-list(id=all_data$id[split_patient_diagnosis=="CP"],#
+    start.time=all_data$start.time[split_patient_diagnosis=="CP"],#
+    end.time=all_data$end.time[split_patient_diagnosis=="CP"],#
+    outcome=all_data$outcome[split_patient_diagnosis=="CP"],#
+    progression=all_data$progression[split_patient_diagnosis=="CP",],#
+    Z=all_data$Z[split_patient_diagnosis=="CP",])#
+dataList <- list(#
+    Genetics = all_data$Z[,dataGroups$Genetics],#
+    Cytogenetics = all_data$Z[,dataGroups$Cytogenetics],#
+    Demographics = all_data$Z[,dataGroups$Demographics],#
+    Clinical = all_data$Z[,dataGroups$Clinical],#
+    Nuisance = all_data$Z[,dataGroups$Nuisance]#
+)#
+groups <- unlist(sapply(names(dataList), function(x) rep(x, ncol(dataList[[x]]))))#
+groups <- factor(groups)#
+names(groups) <- colnames(all_data$Z)#
+table(groups)#
+wcp <- which(cp_data$progression$CPT == 1) # Sub patients that are in CP#
+wcpaml <- intersect(wcp+1, which(cp_data$progression$AMLT == 1)) # Sub patients that have progressed to AML from CP#
+wcpmf <- which(cp_data$progression$MFT == 1) # Sub patients that have progressed to MF from CP#
+wcpmfaml <- intersect(wcpmf+1, which(cp_data$progression$AMLT == 1)) # Sub patients that have progressed to AML from Secondary MF#
+length(wcp)#
+length(wcpaml)#
+length(wcpmf)#
+length(wcpmfaml)#
+wmf <- which(mf_data$progression$MFT == 1) # Sub patients that are in MF#
+wmfaml <- intersect(wmf+1, which(mf_data$progression$AMLT == 1)) # Sub patients that have progressed to AML from primary MF#
+length(wmf)#
+length(wmfaml)#
+test_os <- Surv(cp_data$start.time[wcp], time_death_cp, outcome_from_cp)#
+cp_or_mf <- union(wcp, wcpmf)#
+o <- order(cp_or_mf)#
+cp_or_mf <- cp_or_mf[o]#
+#
+os_from_cp <- Surv(cp_data$start.time[cp_or_mf], cp_data$end.time[cp_or_mf], as.integer(cp_data$outcome[cp_or_mf] | cp_data$progression$AMLT[cp_or_mf+1]==1))#
+#os_from_cp <- Surv(cp_data$end.time[cp_or_mf] - cp_data$start.time[cp_or_mf], as.integer(cp_data$outcome[cp_or_mf] | cp_data$progression$AMLT[cp_or_mf+1]==1))#
+#
+plot(survfit(os_from_cp~1), xlim=c(0, 25), xlab="Yrs")#
+lines(survfit(test_os~1), col="red")#
+surv_cp <- Surv(cp_data$start.time, cp_data$end.time, cp_data$outcome)[wcp,]#
+#surv_cp <- Surv(cp_data$end.time - cp_data$start.time, cp_data$outcome)[wcp,]#
+#
+params_used_cp <- colSums(cp_data$Z[wcp,])!=0#
+cp_fit <- CoxRFX(cp_data$Z[wcp, params_used_cp], surv_cp, groups=groups[params_used_cp], which.mu=which.mu, nu=1, sigma0=0.01, max.iter=200)#
+o <- rep(0,length(cp_data$outcome))#
+o[intersect(wcp,wcpaml-1)] <- 1#
+#
+cp_to_aml_surv <- Surv(cp_data$start.time, cp_data$end.time, o)[wcp,]#
+#cp_to_aml_surv <- Surv(cp_data$end.time - cp_data$start.time, o)[wcp,]#
+#
+params_used_cp_to_aml <- colSums(cp_data$Z[wcp,])!=0#
+cp_to_aml_fit <- CoxRFX(cp_data$Z[wcp, params_used_cp_to_aml], cp_to_aml_surv, groups=groups[params_used_cp_to_aml], which.mu=which.mu, nu=1, sigma0=0.01, max.iter=200)#
+o <- rep(0,length(cp_data$outcome))#
+o[intersect(wcp,wcpmf-1)] <- 1#
+#
+cp_to_mf_surv <- Surv(cp_data$start.time, cp_data$end.time, o)[wcp,]#
+#cp_to_mf_surv <- Surv(cp_data$end.time - cp_data$start.time, o)[wcp,]#
+#
+params_used_cp_to_mf <- colSums(cp_data$Z[wcp,])!=0#
+cp_to_mf_fit <- CoxRFX(cp_data$Z[wcp, params_used_cp_to_mf], cp_to_mf_surv, groups=groups[params_used_cp_to_mf], which.mu=which.mu, nu=1, sigma0=0.01, max.iter=200)#
+#
+combined_Z <- rbind(cp_data$Z[wcpmf,], mf_data$Z[wmf,])#
+combined_Z$AML_from_MF_Secondary <- c(rep(0, length(wcpmf)), rep(1, length(wmf)))#
+#dataGroups$Nuisance <- c(dataGroups$Nuisance, "AML_from_MF_Secondary")#
+#dataList$Nuisance <- combined_Z[,dataGroups$Nuisance]#
+dataGroups$Clinical <- c(dataGroups$Clinical, "AML_from_MF_Secondary")#
+dataList$Clinical <- combined_Z[,dataGroups$Clinical]#
+combined_groups <- unlist(sapply(names(dataList), function(x) rep(x, ncol(dataList[[x]]))))#
+combined_groups <- factor(combined_groups)#
+names(combined_groups) <- colnames(combined_Z)#
+rebase_start_time <- c(rep(0, length(cp_data$start.time[wcpmf])), mf_data$start.time[wmf])#
+rebase_end_time <- c((cp_data$end.time[wcpmf] - cp_data$start.time[wcpmf]), mf_data$end.time[wmf])#
+#
+surv_mf <- Surv(rebase_start_time, rebase_end_time, c(cp_data$outcome[wcpmf], mf_data$outcome[wmf]))#
+#surv_mf <- Surv(rebase_end_time - rebase_start_time, c(cp_data$outcome[wcpmf], mf_data$outcome[wmf]))#
+#
+params_used_mf <- colSums(combined_Z)!=0#
+combined_groups[params_used_mf]#
+mf_fit <- CoxRFX(combined_Z[params_used_mf], surv_mf, groups=combined_groups[params_used_mf], which.mu=which.mu, nu=1, sigma0=0.01, max.iter=200)#
+rebase_start_time <- c(rep(0, length(cp_data$start.time[wcpmf])), mf_data$start.time[wmf])#
+rebase_end_time <- c(cp_data$end.time[wcpmf] - cp_data$start.time[wcpmf], mf_data$end.time[wmf])#
+o_cp <- rep(0,length(cp_data$outcome))#
+o_cp[intersect(wcpmf,wcpmfaml-1)] <- 1#
+o_mf <- rep(0,length(mf_data$outcome))#
+o_mf[intersect(wmf,wmfaml-1)] <- 1#
+o <- c(o_cp[wcpmf], o_mf[wmf])#
+#
+mf_to_aml_surv <- Surv(rebase_start_time, rebase_end_time, o)#
+#mf_to_aml_surv <- Surv(rebase_end_time - rebase_start_time, o)#
+#
+params_used_mf_to_aml <- colSums(combined_Z)!=0#
+mf_to_aml_fit <- CoxRFX(combined_Z[params_used_mf_to_aml], mf_to_aml_surv, groups=combined_groups[params_used_mf_to_aml], which.mu=which.mu, nu=1, sigma0=0.01, max.iter=200)#
+#
+o <- rep(0,length(cp_data$outcome)+length(mf_data$outcome))#
+o[intersect(wcp,wcpaml-1)] <- 1#
+o[length(cp_data$outcome)+intersect(wmf,wmfaml-1)] <- 1#
+o[intersect(wcp,wcpmfaml-2)] <- 1#
+cpormf<-c(wcp,length(cp_data$outcome)+wmf)#
+aml_start_time<-c(cp_data$start.time,mf_data$start.time)#
+aml_end_time<-c(cp_data$end.time,mf_data$end.time)#
+aml_end_time[intersect(wcp,wcpmfaml-2)]<-aml_end_time[wcpmfaml]#
+combinedaml_surv <- Surv(aml_start_time, aml_end_time, o)[cpormf,]#
+aml_fit <- CoxRFX(rbind(cp_data$Z,mf_data$Z)[cpormf,], combinedaml_surv, groups=groups, which.mu=which.mu, nu=1, sigma0=0.01, max.iter=200)#
+#
+d <- sapply(1:length(wcp), function(i){#
+            i <<- i#
+            t <- c(time_mf_cp[i], time_death_cp[i]) - cp_data$start.time[wcp][i]#
+            o <- order(t, na.last=NA)#
+            stages <- c(1:2,0)#
+            r <- stages[c(1, o+1)]#
+            if(outcome_from_cp[i] & is.na(time_aml_cp[i]))#
+                r[length(r)] <- r[length(r)-1] +2#
+            if(!is.na(time_aml_cp[i]))#
+                r[length(r)] <- r[length(r)-1] +4#
+            tt <- c(cp_data$start.time[wcp][i],t[o]+cp_data$start.time[wcp][i])#
+            if(length(o)==0)#
+                return(c(rep(NA,7),i))#
+            s <- cbind(id=i, start=tt[-length(tt)],  stop=tt[-1], start.stage=r[-length(r)], end.stage=r[-1])[diff(tt)!=0,]#
+            # s <- cbind(time1 = tt[-length(tt)], time2=tt[-1], death=c(rep(0, length(o)-1), clinicalData$Status[i]), outer(0:(length(o)-1), r[-3], `>=`)+0, i=i)[diff(tt)!=0,]#
+            return(s)#
+        })#
+d <- as.data.frame(do.call("rbind",d))#
+#
+nodes <- as.character(1:6)#
+edges <- list(`1`=list(edges=c("2","3","5")), `2`=list(edges=c("4","6")), `3`=list(edges=NULL), `4`=list(edges=NULL), `5`=list(edges=NULL),`6`=list(edges=NULL))#
+struct <-  new("graphNEL", nodes = nodes, edgeL = edges, edgemode = "directed")#
+msurv <- msSurv(d, struct, bs = FALSE, LT=TRUE)#
+#
+y <- t(apply(cbind(1,-msurv@ps[,c(3:6, 2:1)]),1,cumsum))#
+par(mar=c(3,3,1,1), bty="n", mgp=c(2,.5,0), las=1)#
+plot(msurv@et, y[,1], ylim=c(0,1), type="s",lty=0, xlab="Time after diagnosis (years)", ylab="Fraction of patients", xlim=c(0,25), xaxs="i", yaxs="i")#
+steps <- function(x, type="s") rep(x, each=2)[if(type=="s") -1 else -2*length(x)]#
+x <- steps(msurv@et, type="S")#
+for(i in 1:6)#
+    polygon(c(x, rev(x)), c(steps(y[,i]), rev(steps(y[,i+1])) ), col=c(brewer.pal(5,"Pastel1")[c(1,2,3,4,5)],"#DDDDDD")[i], border=NA)#
+abline(h=seq(0,1,.2), col='white', lty=3)#
+abline(v=seq(0,25,1), col='white', lty=3)#
+#plot(survfit(os_from_cp ~ 1), xlim=c(0, 25), ylim=c(00, 1))#
+lines(x, steps(y[,5]), lwd=2, col="black")#
+#lines(survfit(test2_surv ~ 1), col="green")#
+#
+w <- which.min(abs(msurv@et-25))#
+text(x=par("usr")[2], y= y[w,-7]+diff(y[w,])/2, labels=c(c("Death in post MF AML","Death in post CP AML","Death in MF","Death in CP")[4:1],"Alive in MF","Alive in CP"), pos=2)#
+length(cp_or_mf)#
+#
+MultiRFX5 <- function(coxRFXcpd, coxRFXamld, coxRFXmf, coxRFXpmfd, coxRFXpmfamld, data, x =365, tdMfBaseline = rep(1, ceiling(max(x))+1), tdMfAmlBaseline = rep(1, ceiling(max(x))+1), tdPrmBaseline = rep(1, ceiling(max(x))+1), tdOsBaseline = rep(1, ceiling(max(x))+1), ciType="analytical",  stage0="CP"){#
+    cppFunction('NumericVector computeHierarchicalSurvival(NumericVector x, NumericVector diffS0, NumericVector S1Static, NumericVector haz1TimeDep) {#
+                    int xLen = x.size();#
+                    double h;#
+                    NumericVector overallSurvival(xLen);#
+                    for(int i = 0; i < xLen; ++i) overallSurvival[i] = 1;#
+                    for(int j = 1; j < xLen; ++j) if(diffS0[j-1] != 0){#
+                    h = haz1TimeDep[j-1];#
+                    for(int i = j; i < xLen; ++i){#
+                    overallSurvival[i] += diffS0[j-1] * (1-pow(S1Static[i-j], h));#
+                    }#
+                    }#
+                    return overallSurvival;#
+                    }')#
+    ## Step 1: Compute KM survival curves and log hazard#
+    getS <- function(coxRFX, data, max.x=5000) {        #
+        if(!is.null(coxRFX$na.action)) coxRFX$Z <- coxRFX$Z[-coxRFX$na.action,]#
+        data <- as.matrix(data[,match(colnames(coxRFX$Z),colnames(data)), drop=FALSE])#
+        r <- PredictRiskMissing(coxRFX, data, var="var2")#
+        H0 <- basehaz(coxRFX, centered = FALSE)#
+        hazardDist <- splinefun(H0$time, H0$hazard, method="monoH.FC")#
+        x <- c(0:ceiling(max.x/25))*25/365#
+        S <- exp(-hazardDist(x))#
+        return(list(S=S, r=r, x=x, hazardDist=hazardDist, r0 = coxRFX$means %*% coef(coxRFX)))#
+    }#
+    kmMf <- getS(coxRFX = coxRFXmf, data = data, max.x=max(x))#
+    kmCpd <- getS(coxRFX = coxRFXcpd, data = data, max.x=max(x))#
+    kmAmld <- getS(coxRFX = coxRFXamld, data = data, max.x=max(x))#
+    data$AML_from_MF_Secondary <- rep(ifelse(stage0=="CP", 1, 0), nrow(data))#
+    kmPmfd <- getS(coxRFX = coxRFXpmfd, data = data, max.x=max(x))#
+    kmPmfamld <- getS(coxRFX = coxRFXpmfamld, data = data, max.x=max(x))#
+    xx <- 0:ceiling(max(x)/25)#
+    sapply(1:nrow(data), function(i){#
+                # Adjust curves for competing risks, accounting for hazard#
+                # CP Death <-------- CP --------> AML Death#
+                #                     |#
+                #                     |#
+                #                     |#
+                #                     |#
+                #                     V#
+                # MF Death <-------- MF --------> AML Death#
+                mfpAbs <-  cumsum(c(1,diff(kmMf$S^exp(kmMf$r[i,1]))) * (kmCpd$S ^ exp(kmCpd$r[i,1])) * (kmAmld$S ^ exp(kmAmld$r[i,1])))#
+                cpdAbs  <- cumsum(c(1,diff(kmCpd$S^exp(kmCpd$r[i,1]))) * (kmAmld$S ^ exp(kmAmld$r[i,1])) * (kmMf$S ^ exp(kmMf$r[i,1]))) ## array times x nrow(data)#
+                amldAbs  <- cumsum(c(1,diff(kmAmld$S^exp(kmAmld$r[i,1]))) * (kmMf$S ^ exp(kmMf$r[i,1])) * (kmCpd$S ^ exp(kmCpd$r[i,1])))#
+                mfdAbs <- cumsum(c(1,diff(kmPmfd$S^exp(kmPmfd$r[i,1]))) * (kmPmfamld$S ^ exp(kmPmfamld$r[i,1])))#
+                mfamldAbs <- cumsum(c(1,diff(kmPmfamld$S^exp(kmPmfamld$r[i,1]))) * (kmPmfd$S ^ exp(kmPmfd$r[i,1]))) ## array times x nrow(data)#
+                ### Overall survival from cronic phase#
+                mfamldCp <- computeHierarchicalSurvival(x = xx, diffS0 = diff(mfpAbs), S1Static = mfamldAbs, haz1TimeDep = tdMfAmlBaseline)#
+                mfdCp <- computeHierarchicalSurvival(x = xx, diffS0 = diff(mfpAbs), S1Static = mfdAbs, haz1TimeDep = tdMfBaseline)#
+                ### Overall survival from starting in MF#
+                mfamldMf <- mfamldAbs#
+                mfdMf <- mfdAbs#
+#
+                cbind(#
+                  deathInCpFromCp=1 - cpdAbs,#
+                  deathInMfFromCp=1 - mfdCp,#
+                  deathInAmlFromCp=1 - amldAbs,#
+                  deathInMfamlFromCp=1 - mfamldCp,#
+                  aliveInMfFromCp=1 - mfpAbs - (1 - mfdCp) - (1 - mfamldCp),#
+                  deathInMfFromMF=1 - mfdMf,#
+                  deathInAmlFromMF=1 - mfamldMf#
+                )#
+            }, simplify='array')#
+}#
+#
+save(all_data, cp_data, mf_data, groups, MultiRFX5, dataGroups, dataList, file="loo.RData")#
+#
+smf <- mf_fit$surv#
+#
+coxphMf <- coxph(smf[1:length(wcpmf)] ~ pspline(time0, df=3) + I(offset), data=data.frame(time0=cp_data$start.time[wcpmf] - cp_data$start.time[wcpmf - 1], offset=mf_fit$linear.predictors[1:length(wcpmf)]))#
+tdMfBaseline <- pmin(50,pmax(0.1,exp(predict(coxphMf, newdata=data.frame(time0=seq(0,25,25/365), offset=mean(mf_fit$linear.predictors[1:length(wcpmf)]))))))#
+plot(seq(0,25,25/365),tdMfBaseline, log="y")#
+#
+# saml <- mf_to_aml_fit$surv#
+# #
+# coxphMfAml <- coxph(saml[1:length(wcpmf)] ~ pspline(time0, df=3) + I(offset), data=data.frame(time0=cp_data$start.time[wcpmf] - cp_data$start.time[wcpmf - 1], offset=mf_to_aml_fit$linear.predictors[1:length(wcpmf)]))#
+# tdMfAmlBaseline <-  pmin(10,pmax(0.1,exp(predict(coxphMfAml, newdata=data.frame(time0=seq(0,25,25/365), offset=mean(mf_to_aml_fit$linear.predictors[1:length(wcpmf)]))))))#
+# plot(seq(0,25,25/365),tdMfAmlBaseline, log="y")#
+#
+fiveStagePredictedCP <- MultiRFX5(cp_fit, aml_fit, cp_to_mf_fit, mf_fit, aml_fit, cp_data$Z[wcp,], x=365*25)#, tdMfBaseline=tdMfBaseline, tdMfAmlBaseline=tdMfAmlBaseline)#
+fiveStagePredictedMF <- MultiRFX5(cp_fit, cp_to_aml_fit, cp_to_mf_fit, mf_fit, mf_to_aml_fit, mf_data$Z[wmf,], x=365*25)#, tdMfBaseline=tdMfBaseline, tdMfAmlBaseline=tdMfAmlBaseline)#
+#
+sedimentPlot <- function(Y, x=1:nrow(Y)*25/365, y0=0, y1=NULL, col=1:ncol(Y), ...){#
+    Z <- cbind(t(apply(cbind(y0,Y),1,cumsum)),y1)#
+    plot(x,Z[,1], xlim=range(x), ylim=range(Z), lty=0, pch=NA,...)#
+    for(i in 2:ncol(Z))#
+        polygon(c(x,rev(x)), c(Z[,i-1],rev(Z[,i])), border=NA, col=col[i-1])#
+}#
+#
+lineStageCP <- function(mf_date, Date_LF, ERDate, aml_date, Status, y=0, col=1:5, pch.trans=19, pch.end=19, ...){#
+    xpd <- par("xpd")#
+    par(xpd=NA)#
+    t <- as.numeric(c(mf_date, Date_LF) - ERDate )#
+    w <- !is.na(t)#
+    o <- order(t)#
+    to <- pmin(t[o], par("usr")[2])#
+    l <- length(to)#
+    segments(c(0,to[-l]), rep(y,l), to, rep(y,l), col=col, lend=1, ...)#
+    status <- 1#
+    if(!is.na(mf_date))#
+        status <- status + 1#
+    if(Status==1 & is.na(aml_date))#
+        status <- status + 2#
+    if(!is.na(aml_date))#
+        status <- status + 4#
+    x <- ifelse(t <= par("usr")[2], t, NA)#
+    points(x, rep(y, length(t)), pch=c(pch.trans, if(Status | !is.na(aml_date)) pch.end else NA), col=col[c(2,status)])#
+    par(xpd=xpd)#
+}#
+#
+lineStageMF <- function(Date_LF, ERDate, aml_date, Status, y=0, col=1:5, pch.trans=19, pch.end=19, ...){#
+    xpd <- par("xpd")#
+    par(xpd=NA)#
+    t <- as.numeric(Date_LF - ERDate )#
+    to <- pmin(t, par("usr")[2])#
+    l <- length(to)#
+    segments(0, y, to, y, col=col, lend=1, ...)#
+    status <- 1#
+    if (is.na(aml_date) & Status==1)#
+      status <- 2#
+    else if (!is.na(aml_date))#
+      status <- 3#
+    x <- ifelse(t <= par("usr")[2], t, NA)#
+    points(x, y, pch=c(if(Status | !is.na(aml_date)) pch.end else NA), col=col[status])#
+    par(xpd=xpd)#
+}#
+#
+pastel1 <- brewer.pal(9, "Pastel1")#
+par(mfrow=c(1,1), mar=c(3,3,1,1), cex=1)#
+sedimentPlot(-rowMeans(fiveStagePredictedCP[,1:5,], dims=2), y0=1, y1=0,  col=c(pastel1[c(1,2,3,4,5)], "#DDDDDD"))#
+lines(survfit(os_from_cp ~ 1))#
+legend('bottomleft', bty='n', col=c("red", "blue", "green", "purple", "orange", "grey"), legend=c("Death in CP", "Death in MF", "Death in AML post CP", "Death in AML post MF", "Alive in MF", "Alive in CP"), lty=1)#
+#
+nStars <- 32#
+set.seed(42)#
+#
+os_cp_start <- Surv(cp_data$start.time[wcp], time_death_cp, outcome_from_cp)#
+#os_cp_start <- Surv(time_death_cp - cp_data$start.time[wcp], outcome_from_cp)#
+#
+cOs_cp_start <- CoxRFX(cp_data$Z[wcp,], os_cp_start, groups=groups, which.mu = which.mu, nu=1, sigma0=0.01)#
+#
+s_term <- sample(which(outcome_from_cp==1))#
+s_cens <- sample(which(outcome_from_cp==0),nStars^2 - length(s_term))#
+s <- c(s_term, s_cens)#
+l <- "cOs_cp_start"#
+t <- os_cp_start#
+p <- PartialRisk(get(l),  newZ=cp_data$Z[wcp, colnames(get(l)$Z)])#
+p <- p[,colnames(p)!="Nuisance"]#
+locations <- hilbertCurve(log2(nStars))+1 #
+mat <- matrix(order(locations[,1], locations[,2]), ncol=nStars)#
+h <- hclust(dist(t(fiveStagePredictedCP[5*365/25,,s])))#hclust(dist(p[s,]))#
+o <- h$order # seq_along(h$order)##
+#
+##Tiles graph#
+pdf("tiles.pdf")#
+layout(mat[nStars:1,])#
+par(mar=c(0,0,0,0),+.5, bty="n")#
+#
+for(i in 1:nStars^2){ # Fitted predictions#
+    sedimentPlot(-fiveStagePredictedCP[seq(1,301,30),1:5,s[o[i]]], x=seq(1,301,30),y0=1, y1=0,  col=c(pastel1[c(1,2,3,4,5)], "#DDDDDD"), xlab="time",ylab="fraction", xaxt="n", yaxt="n")#
+    lines(x=seq(1,301,30), y=1-rowSums(fiveStagePredictedCP[seq(1,301,30),1:4,s[o[i]]]), lwd=1)#
+    i <- s[o[i]]#
+    lineStageCP(time_mf_cp[i]*365/25, time_death_cp[i]*365/25, cp_data$start.time[wcp][i]*365/25, time_aml_cp[i]*365/25, outcome_from_cp[i], col=c('#999999','#ddcc00','#990000','#000099','#009900','#990099'), lwd=2, pch.trans=NA, y=0.05)    #
+    #text(x=c(150), y=c(0.2), labels=c(i))#
+}#
+dev.off()#
+#
+survConcordance(cp_fit$surv ~ predict(cp_fit))#
+survConcordance(mf_fit$surv ~ predict(mf_fit))#
+survConcordance(cp_to_mf_fit$surv ~ predict(cp_to_mf_fit))#
+survConcordance(cp_to_aml_fit$surv ~ predict(cp_to_aml_fit))#
+survConcordance(mf_to_aml_fit$surv ~ predict(mf_to_aml_fit))#
+survConcordance(aml_fit$surv ~ predict(aml_fit))#
+# print(survConcordance(os_cp_start ~ colSums(fiveStagePredictedCP[5*365/25,1:4,])))#
+# print(survConcordance(os_cp_start ~ colSums(fiveStagePredictedCP[10*365/25,1:4,])))#
+# print(survConcordance(os_cp_start ~ colSums(fiveStagePredictedCP[15*365/25,1:4,])))#
+# print(survConcordance(os_cp_start ~ colSums(fiveStagePredictedCP[20*365/25,1:4,])))#
+# print(survConcordance(os_cp_start ~ colSums(fiveStagePredictedCP[25*365/25,1:4,])))#
+#
+sink("TGS_output.txt",append=TRUE)#
+cat("Variance contributions and HRs for each variable")#
+cbind(colSums(cov(as.matrix(all_data$Z[,names(aml_fit$coeff)])%*%diag(aml_fit$coeff))),exp(aml_fit$coeff))#
+cbind(colSums(cov(as.matrix(cp_data$Z[,names(cp_fit$coeff)])%*%diag(cp_fit$coeff))),exp(cp_fit$coeff))#
+cbind(colSums(cov(as.matrix(mf_data$Z[,names(mf_fit$coeff[1:61])])%*%diag(mf_fit$coeff[1:61]))),exp(mf_fit$coeff)[1:61])#
+cbind(colSums(cov(as.matrix(cp_data$Z[,names(cp_to_mf_fit$coeff)])%*%diag(cp_to_mf_fit$coeff))),exp(cp_to_mf_fit$coeff))#
+sink()#
+###Run LOO first, then#
+#
+TGSZcut_pred<- sapply(lapply(c(1:nrow(TGSZcut)), function(i){#
+e <- new.env()#
+if (i %in% (c(1:20)*100))#
+print(paste("Done",i,"out of",nrow(TGSZcut)))#
+t <- try(load(paste0("../data/loo/",TGSZcut$UPN[i],".RData"), env=e))#
+if(class(t)=="try-error") rep(NA, length(times))#
+else e$fiveStagePredicted[,,1]#
+}), I, simplify="array")#
+#
+##Otherwise: TGSZcut_pred<-MultiRFX5(cp_fit, aml_fit, cp_to_mf_fit, mf_fit, aml_fit, TGSZcut, x=365*25)#
+newdataplot<-#
+function(newdata,ET=newdata$ET,PV=newdata$PV,MF=newdata$MF){#
+pastel2<-c("#BFFFFF","#A3D8D1","#FFBFC9","#FF7387","#D1C299","#A3D8D1","#FF7387")#
+newdata$MF==MF;newdata$PV==PV;newdata$ET==ET#
+multistate<-MultiRFX5(cp_fit, aml_fit, cp_to_mf_fit, mf_fit, aml_fit, newdata, x=365*25)#
+if (MF==0) {#
+sedimentPlot(-multistate[seq(1,361,30),1:5,1], x=seq(1,361,30),y0=1, y1=0,  col=c(pastel2[c(1,2,3,4,5)], "#D6E3DE"), xlab="Time from diagnosis (years)",ylab="Proportion of patients", xaxt="n",yaxt="n")#
+    lines(x=seq(1,361,30), y=1-rowSums(multistate[seq(1,361,30),1:4,1]), lwd=1)#
+segments(x0=0,y0=0.5,x1=newdata$Death/25,y1=0.5)#
+points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC,pch=19);points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC*0.85,pch=19,col="#BFFFFF")#
+if(newdata$DeathC==1&newdata$MFTC==1&newdata$AMLTC==0){points(x=newdata$Death/25,y=0.5,cex=0.9,pch=19,col="#A3D8D1")}#
+if(newdata$DeathC==1&newdata$MFTC==1&newdata$AMLTC==1){points(x=newdata$Death/25,y=0.5,cex=0.9,pch=19,col="#FF7387")}#
+if(newdata$DeathC==1&newdata$MFTC==0&newdata$AMLTC==1){points(x=newdata$Death/25,y=0.5,cex=0.9,pch=19,col="#FFBFC9")}#
+points(x=newdata$MFT/25,y=0.5,cex=newdata$MFTC*0.5,pch=18)#
+} else {#
+sedimentPlot(-multistate[seq(1,361,30),6:7,1], x=seq(1,361,30),y0=1, y1=0,  col=c(pastel2[c(6,7)], "#D1C299"), xlab="Time from diagnosis (years)",ylab="Proportion of patients", xaxt="n",yaxt="n")#
+    lines(x=seq(1,361,30), y=1-rowSums(multistate[seq(1,361,30),6:7,1]), lwd=1)#
+segments(x0=0,y0=0.5,x1=newdata$Death/25,y1=0.5);points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC,pch=19);points(x=newdata$Death/25,y=0.5,cex=newdata$AMLTC*0.85,pch=19,col="#FF7387")#
+}#
+}#
+#
+newdataplotLOO<-#
+function(newdata,multistate,i){#
+pastel2<-c("#BFFFFF","#A3D8D1","#FFBFC9","#FF7387","#D1C299","#A3D8D1","#FF7387")#
+newdata<-newdata[i,];MF<-newdata$MF;PV<-newdata$PV;ET<-newdata$ET#
+if (MF==0) {#
+sedimentPlot(-multistate[seq(1,361,30),1:5,i], x=seq(1,361,30),y0=1, y1=0,  col=c(pastel2[c(1,2,3,4,5)], "#D6E3DE"), xlab="Time from diagnosis (years)",ylab="Proportion of patients", xaxt="n",yaxt="n")#
+    lines(x=seq(1,361,30), y=1-rowSums(multistate[seq(1,361,30),1:4,i]), lwd=1)#
+segments(x0=0,y0=0.5,x1=newdata$Death/25,y1=0.5)#
+points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC*2,pch=19);points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC*1.8,pch=19,col="#BFFFFF")#
+if(newdata$DeathC==1&newdata$MFTC==1&newdata$AMLTC==0){points(x=newdata$Death/25,y=0.5,cex=1.8,pch=19,col="#A3D8D1")}#
+if(newdata$DeathC==1&newdata$MFTC==1&newdata$AMLTC==1){points(x=newdata$Death/25,y=0.5,cex=1.8,pch=19,col="#FF7387")}#
+if(newdata$DeathC==1&newdata$MFTC==0&newdata$AMLTC==1){points(x=newdata$Death/25,y=0.5,cex=1.8,pch=19,col="#FFBFC9")}#
+points(x=newdata$MFT/25,y=0.5,cex=newdata$MFTC,pch=4)#
+} else {#
+sedimentPlot(-multistate[seq(1,361,30),6:7,i], x=seq(1,361,30),y0=1, y1=0,  col=c(pastel2[c(6,7)], "#D1C299"), xlab="Time from diagnosis (years)",ylab="Proportion of patients", xaxt="n",yaxt="n")#
+    lines(x=seq(1,361,30), y=1-rowSums(multistate[seq(1,361,30),6:7,i]), lwd=1)#
+segments(x0=0,y0=0.5,x1=newdata$Death/25,y1=0.5);points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC*2,pch=19);points(x=newdata$Death/25,y=0.5,cex=newdata$DeathC*1.8,pch=19,col="#A3D8D1");points(x=newdata$Death/25,y=0.5,cex=newdata$AMLTC*1.8,pch=19,col="#FF7387")#
+}#
+}#
+ape2<-function (x, time,censor, timepoint, censored = "conditional") #
+{#
+    surv<-Surv(time,censor)#
+    status <- survStatus(surv, timepoint, censored = censored)#
+    p<-length(which(status==1))/length(censor);unc<-p*(1-p)#
+    err <- c(unc=unc, brier = mean((x-status)^2, na.rm = TRUE),abs = mean(abs(x-status), #
+        na.rm = TRUE))#
+    return(err)#
+}#
+#
+sink("TGS_output.txt",append=TRUE)#
+cat("Concordances for full multistate model")#
+for(i in c(5,10,15,20)){#
+cat("OS concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,1:4,which(TGSZcut$MF==0)]))$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,1:4,which(TGSZcut$MF==0)]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("MF transformation concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,c(2,4,5),which(TGSZcut$MF==0)]))$concordance, " stderr: ", survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,c(2,4,5),which(TGSZcut$MF==0)]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML transformation concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,c(3,4),which(TGSZcut$MF==0)]))$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,c(3,4),which(TGSZcut$MF==0)]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("EFS concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]))$concordance, " stderr: ", survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("EFS concordance for MF, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==1)]~colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]))$concordance, " stderr: ", survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==1)]~colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML concordance for MF, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut_pred[i*365/25,7,which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut_pred[i*365/25,7,which(TGSZcut$MF==1)])$std.err,"\n")#
+}#
+cat("Prediction uncertainty, Brier score, APE for full multistate model")#
+for(i in c(5,10,15,20)){#
+cat("OS in CP at",i,"yrs",#
+ape2(1-colSums(TGSZcut_pred[i*365/25,1:4,which(TGSZcut$MF==0)]),TGSZcut$Death[which(TGSZcut$MF==0)],TGSZcut$DeathC[which(TGSZcut$MF==0)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("MF transformation in CP at",i,"yrs",#
+ape2(1-colSums(TGSZcut_pred[i*365/25,c(2,4,5),which(TGSZcut$MF==0)]),TGSZcut$MFT[which(TGSZcut$MF==0)],TGSZcut$MFTC[which(TGSZcut$MF==0)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML transformation in CP at",i,"yrs",#
+ape2(1-colSums(TGSZcut_pred[i*365/25,c(3,4),which(TGSZcut$MF==0)]),TGSZcut$AMLT[which(TGSZcut$MF==0)],TGSZcut$AMLTC[which(TGSZcut$MF==0)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("EFS in CP at",i,"yrs",#
+ape2(1-colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]),TGSZcut$EFS[which(TGSZcut$MF==0)],TGSZcut$EFSC[which(TGSZcut$MF==0)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("EFS in MF at",i,"yrs",#
+ape2(1-colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]),TGSZcut$EFS[which(TGSZcut$MF==1)],TGSZcut$EFSC[which(TGSZcut$MF==1)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML transformation in MF at",i,"yrs",#
+ape2(1-TGSZcut_pred[i*365/25,7,which(TGSZcut$MF==1)],TGSZcut$AMLT[which(TGSZcut$MF==1)],TGSZcut$AMLTC[which(TGSZcut$MF==1)],i*365.25),"\n")#
+}#
+#
+cat("Other models:")#
+cat("OS concordance for CP, using HMR: Concordance:",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("MF transformation concordance for HMR: Concordance:",#
+survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("AML transformation concordance for HMR: Concordance:",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("EFS concordance for CP, using HMR. Concordance:",#
+survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$HMR[which(TGSZcut$MF==0)])$std.err,"\n")#
+#
+cat("OS concordance for CP, using Age/thrombosis: Concordance:",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("MF transformation concordance for Age/Thrombosis: Concordance:",#
+survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("AML transformation concordance for Age/thrombosis: Concordance:",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("EFS concordance for CP, using Age/Thrombosis: Concordance:",#
+survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$PT60[which(TGSZcut$MF==0)])$std.err,"\n")#
+#
+cat("OS concordance for CP, using IPSET: Concordance:",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("MF transformation concordance for IPSET: Concordance:",#
+survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("AML transformation concordance for IPSET: Concordance:",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("EFS concordance for CP, using IPSET. Concordance:",#
+survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$IPSET[which(TGSZcut$MF==0)])$std.err,"\n")#
+#
+cat("OS concordance for CP, using CALRASXL1: Concordance:",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("MF transformation concordance in CP for CALRASXL1: Concordance:",#
+survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$MFT,TGSZcut$MFTC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("AML transformation concordance in CP for CALRASXL1: Concordance:",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$std.err,"\n")#
+cat("EFS concordance for CP, using CALRASXL1. Concordance:",#
+survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$EFS,TGSZcut$EFSC)[which(TGSZcut$MF==0)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==0)])$std.err,"\n")#
+#
+cat("EFS concordance for HMR in MF: ",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==1)]~TGSZcut$HMR[which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==1)]~TGSZcut$HMR[which(TGSZcut$MF==1)])$std.err,"\n")#
+cat("AML transformation concordance for HMR in MF: ",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut$HMR[which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut$HMR[which(TGSZcut$MF==1)])$std.err,"\n")#
+#
+cat("EFS concordance for PT60 in MF: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==1)]~TGSZcut$PT60[which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==1)]~TGSZcut$PT60[which(TGSZcut$MF==1)])$std.err,"\n")#
+cat("AML transformation concordance for PT60 in MF: ",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut$PT60[which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut$PT60[which(TGSZcut$MF==1)])$std.err,"\n")#
+#
+cat("EFS concordance for CALRASXL1 in MF: ",#
+survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==1)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$Death,TGSZcut$DeathC)[which(TGSZcut$MF==1)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==1)])$std.err,"\n")#
+cat("AML transformation concordance for CALRASXL1 in MF: ",#
+survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==1)])$concordance, " stderr: ", survConcordance(Surv(TGSZcut$AMLT,TGSZcut$AMLTC)[which(TGSZcut$MF==1)]~TGSZcut$CALRASXL1[which(TGSZcut$MF==1)])$std.err,"\n")#
+#
+for(i in c(5,10,15,20)){#
+print(cbind(aggregate(1-colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]),by=list(quantileCut(1-colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]),20)),FUN=median),summary(survfit(Surv(EFS/365.25,EFSC)[which(TGSZcut$MF==0)]~quantileCut(1-colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]),20),data=TGSZcut),times=c(i),extend=TRUE)$surv,summary(survfit(Surv(EFS/365.25,EFSC)[which(TGSZcut$MF==0)]~quantileCut(1-colSums(TGSZcut_pred[i*365/25,1:5,which(TGSZcut$MF==0)]),20),data=TGSZcut),times=c(i),extend=TRUE)$std.err))#
+}#
+#
+for(i in c(5,10,15,20)){#
+print(cbind(aggregate(1-colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]),by=list(quantileCut(1-colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]),15)),FUN=median),summary(survfit(Surv(Death/365.25,DeathC)[which(TGSZcut$MF==1)]~quantileCut(1-colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]),15),data=TGSZcut),times=c(i),extend=TRUE)$surv,summary(survfit(Surv(Death/365.25,DeathC)[which(TGSZcut$MF==1)]~quantileCut(1-colSums(TGSZcut_pred[i*365/25,6:7,which(TGSZcut$MF==1)]),15),data=TGSZcut),times=c(i),extend=TRUE)$std.err))#
+}#
+sink()#
+#
+## External validation cohort#
+florMF<-read.table("florMF2.csv",sep=",",header=TRUE)#
+florMF$DeathC[which(florMF$AMLTC==1)]<-1#
+florMF_pred<-MultiRFX5(cp_fit, aml_fit, cp_to_mf_fit, mf_fit, aml_fit, florMF, x=365*25)#
+#
+sink("TGS_output.txt",append=TRUE)#
+cat("Analysis of external MF cohort")#
+for(i in c(5,10,15,20)){#
+cat("EFS concordance for MF, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]))$concordance, " stderr: ", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML concordance for MF, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF_pred[i*365/25,7,which(florMF$MF==1)])$concordance, " stderr: ", survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF_pred[i*365/25,7,which(florMF$MF==1)])$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("EFS in MF at",i,"yrs",#
+ape2(1-colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]),florMF$Death[which(florMF$MF==1)],florMF$DeathC[which(florMF$MF==1)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML transformation in MF at",i,"yrs",#
+ape2(1-florMF_pred[i*365/25,7,which(florMF$MF==1)],florMF$AMLT[which(florMF$MF==1)],florMF$AMLTC[which(florMF$MF==1)],i*365.25),"\n")#
+}#
+#
+cat("EFS concordance for MF using DIPSS: Concordance:", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~florMF$DIPSS)$concordance, " stderr: ", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~florMF$DIPSS)$std.err,"\n")#
+#
+cat("AML concordance for MF using DIPSS: Concordance:",#
+survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF$DIPSS)$concordance, " stderr: ", survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF$DIPSS)$std.err,"\n")#
+#
+cat("EFS concordance for MF using IPSS: Concordance:", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~florMF$IPSS)$concordance, " stderr: ", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~florMF$IPSS)$std.err,"\n")#
+#
+cat("AML concordance for MF using IPSS: Concordance:",#
+survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF$IPSS)$concordance, " stderr: ", survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF$IPSS)$std.err,"\n")#
+#
+cat("EFS concordance for MF using HMR: Concordance:", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~florMF$HMR)$concordance, " stderr: ", survConcordance(Surv(florMF$Death,florMF$DeathC)[which(florMF$MF==1)]~florMF$HMR)$std.err,"\n")#
+#
+cat("AML concordance for MF using HMR: Concordance:",#
+survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF$HMR)$concordance, " stderr: ", survConcordance(Surv(florMF$AMLT,florMF$AMLTC)[which(florMF$MF==1)]~florMF$HMR)$std.err,"\n")#
+#
+for(i in c(5,10,15,20)){#
+print(cbind(aggregate(1-colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]),by=list(quantileCut(1-colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]),10)),FUN=median),summary(survfit(Surv(Death/365.25,DeathC)[which(florMF$MF==1)]~quantileCut(1-colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]),10),data=florMF),times=c(i),extend=TRUE)$surv,summary(survfit(Surv(Death/365.25,DeathC)[which(florMF$MF==1)]~quantileCut(1-colSums(florMF_pred[i*365/25,6:7,which(florMF$MF==1)]),10),data=florMF),times=c(i),extend=TRUE)$std.err))#
+}#
+#
+cat("\n External CP cohort")#
+florCP<-read.table("florCP_backup.csv",sep=",",header=TRUE)#
+florCP<-florCP[which(florCP$OLD==0),]#
+florCP$DeathC[which(florCP$AMLTC==1)]<-1#
+florCP_pred<-MultiRFX5(cp_fit, aml_fit, cp_to_mf_fit, mf_fit, aml_fit, florCP, x=365*25)#
+for(i in c(5,10,15,20)){#
+print(cbind(aggregate(1-colSums(florCP_pred[i*365/25,1:5,]),by=list(quantileCut(1-colSums(florCP_pred[i*365/25,1:5,]),10)),FUN=median),summary(survfit(Surv(EFS/365.25,EFSC)~quantileCut(1-colSums(florCP_pred[i*365/25,1:5,]),10),data=florCP),times=c(i),extend=TRUE)$surv,summary(survfit(Surv(EFS/365.25,EFSC)~quantileCut(1-colSums(florCP_pred[i*365/25,1:5,]),10),data=florCP),times=c(i),extend=TRUE)$std.err))#
+}#
+#
+for(i in c(5,10,15,20)){#
+cat("OS concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(florCP$Death,florCP$DeathC)~colSums(florCP_pred[i*365/25,1:4,]))$concordance, " stderr: ", survConcordance(Surv(florCP$Death,florCP$DeathC)~colSums(florCP_pred[i*365/25,1:4,]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(florCP$AMLT,florCP$AMLTC)~colSums(florCP_pred[i*365/25,3:4,]))$concordance, " stderr: ", survConcordance(Surv(florCP$AMLT,florCP$AMLTC)~colSums(florCP_pred[i*365/25,3:4,]))$std.err,"\n")#
+}#
+#
+for(i in c(5,10,15,20)){#
+cat("MFT concordance for CP, using",i, "yr predictions: Concordance:",#
+survConcordance(Surv(florCP$MFT,florCP$MFTC)~colSums(florCP_pred[i*365/25,c(2,4,5),]))$concordance, " stderr: ", survConcordance(Surv(florCP$MFT,florCP$MFTC)~colSums(florCP_pred[i*365/25,c(2,4,5),]))$std.err,"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("EFS in MF at",i,"yrs",#
+ape2(1-colSums(florCP_pred[i*365/25,6:7,which(florCP$MF==1)]),florCP$Death[which(florCP$MF==1)],florCP$DeathC[which(florCP$MF==1)],i*365.25),"\n")#
+}#
+for(i in c(5,10,15,20)){#
+cat("AML transformation in MF at",i,"yrs",#
+ape2(1-florCP_pred[i*365/25,7,which(florCP$MF==1)],florCP$AMLT[which(florCP$MF==1)],florCP$AMLTC[which(florCP$MF==1)],i*365.25),"\n")#
+}#
+sink()
+q()
+setwd("/Users/jg23/data")
+library
+library(shiny)
+runApp(MPN_app)
+runApp(/MPN_app)
+runApp("MPN_app")
